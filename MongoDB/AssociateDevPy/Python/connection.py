@@ -1,8 +1,10 @@
 from pymongo import MongoClient
+import os
+import dotenv as env
 
-uri = "mongodb+srv://Admin:Vk06Ej8FroxNbzgR@education.1h51hgs.mongodb.net/?appName=Education"
+env.load_dotenv()
 
-
+uri = os.getenv("uri")
 client = MongoClient(uri)
 
 
