@@ -122,7 +122,7 @@ Apesar da flexibilidade, há limitações e pontos de atenção a considerar:
 
 ## Níveis de aninhamento (nesting)
 
-Nesting (aninhamento) é a prática de colocar documentos dentro de documentos — criar "layers" de dados. Ajuda a modelar relações 1:1 ou 1:pequenos e reduz leituras necessárias.
+Nesting (aninhamento) é a prática de colocar documentos dentro de documentos - criar "layers" de dados. Ajuda a modelar relações 1:1 ou 1:pequenos e reduz leituras necessárias.
 
 Exemplo simples de camadas (layers):
 
