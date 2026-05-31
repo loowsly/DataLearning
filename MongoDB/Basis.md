@@ -8,6 +8,7 @@
 | [DocumentModel.md](DocumentModel.md) | collections, documents, JSON, BSON e dados polimórficos |
 | [Commands.md](Commands.md) | comandos básicos em Python com PyMongo |
 | [CRUD.md](CRUD.md) | operações CRUD em Python |
+| [Tiers.md](Tiers.md) | planos de cluster m0, m2 e m10 no MongoDB Atlas |
 
 ## O que é MongoDB
 

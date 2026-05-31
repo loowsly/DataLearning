@@ -109,6 +109,50 @@ Exemplo: uma coleção de veículos pode ter carros e motos.
 
 Esse modelo é comum em MongoDB porque a coleção não exige que todos os documentos tenham exatamente os mesmos campos.
 
+## Limitações
+
+Apesar da flexibilidade, há limitações e pontos de atenção a considerar:
+
+- Tamanho máximo de documento: um documento BSON não pode exceder 16 MB.
+- Profundidade de aninhamento: níveis muito profundos tornam consultas e atualizações lentas e difíceis de manter.
+- Indexação em campos aninhados e arrays: suportada via dot notation e índices multichave, porém indexar muitos campos heterogêneos pode degradar performance.
+- Operações atômicas: atualizações são atômicas por documento; alterações que envolvam vários documentos podem precisar de transações.
+- Consultas sobre arrays: operadores como `$elemMatch`, `$size` e `$slice` são necessários para consultas e projeções em arrays.
+- Joins (`$lookup`): existem, mas são mais pesados que embedding; prefira embedding quando os dados tiverem coesão forte e cardinalidade baixa.
+
+## Níveis de aninhamento (nesting)
+
+Nesting (aninhamento) é a prática de colocar documentos dentro de documentos — criar "layers" de dados. Ajuda a modelar relações 1:1 ou 1:pequenos e reduz leituras necessárias.
+
+Exemplo simples de camadas (layers):
+
+```json
+{
+	"nome": "Ana",
+	"enderecos": [
+		{
+			"tipo": "residencial",
+			"rua": "Rua A",
+			"coords": { "lat": -23.5, "lon": -46.6 }
+		}
+	],
+	"habilidades": ["Python", "MongoDB"]
+}
+```
+
+Consultas e atualizações em campos aninhados:
+
+- Buscar por campo aninhado: `db.usuarios.find({ "enderecos.tipo": "residencial" })`
+- Atualizar campo aninhado (dot notation): `db.usuarios.updateOne({ _id: id }, { $set: { "enderecos.0.rua": "Nova Rua" } })`
+- Atualizar elemento de array por posição (operador posicional): `db.usuarios.updateOne({ "enderecos.tipo": "residencial" }, { $set: { "enderecos.$.rua": "Rua X" } })`
+- Adicionar item a array: `db.usuarios.updateOne({ _id: id }, { $push: { habilidades: "Docker" } })`
+
+Boas práticas de nesting:
+
+- Embed quando os dados forem fortemente acoplados e não crescerem indefinidamente (ex.: endereços de um usuário).
+- Use referência (guardar `_id` de outro documento) quando houver cardinalidade grande, crescimento independente ou necessidade de compartilhar o mesmo subdocumento entre muitos pais.
+- Prefira consultar e projetar apenas os campos necessários para reduzir transferência de dados.
+
 ## Exemplo de documento
 
 ```json
