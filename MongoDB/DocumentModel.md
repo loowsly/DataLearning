@@ -166,3 +166,14 @@ Boas práticas de nesting:
 	"habilidades": ["Python", "SQL", "MongoDB"]
 }
 ```
+
+## Recursos relacionados
+
+- [Embedding.md](Embedding.md) — embedding vs referência
+- [References.md](References.md) — referências e `$lookup`
+- [DocRelationships.md](DocRelationships.md) — relações entre documentos (1:1, 1:N, N:N)
+- [Entities.md](Entities.md) — entidades e agregados
+- [DataTypes.md](DataTypes.md) — tipos BSON e mapeamentos
+- [Arrays.md](Arrays.md) — arrays e operadores
+- [KeyPairs.md](KeyPairs.md) — chaves e restrições de campo
+- [Documents.md](Documents.md) — operações, atomicidade e projeções

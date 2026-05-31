@@ -1,7 +1,5 @@
 # Chaves e pares (Key‑Value) em documentos MongoDB
 
-Este arquivo explica como funcionam chaves (fields) e pares chave‑valor dentro de documentos BSON, restrições e boas práticas.
-
 ## Conceitos básicos
 
 - Um documento é uma coleção de pares `chave: valor` (como um `dict` em Python).
